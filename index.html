@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>ValoraGratis - Valorización Comercial Gratuita | SmartWorld AI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#0f172a;--accent:#2563eb;--green:#059669}
+body{font-family:'Inter',Arial,sans-serif;background:#f8fafc;color:#0f172a;font-size:14px}
+.no-print{background:#fff;border-bottom:2px solid #0f172a;padding:12px}
+.grid{display:grid;grid-template-columns:340px 1fr 300px;gap:10px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:10px}
+.input,select{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-radius:8px;font-size:14px;margin:4px 0;min-height:44px}
+.label{font-size:10px;font-weight:800;color:#64748b;text-transform:uppercase;display:block;margin-top:6px}
+.btn{border:0;padding:12px;border-radius:8px;font-weight:800;cursor:pointer;width:100%;margin-top:6px;font-size:13px;min-height:48px}
+.btn-toggle{background:#0f172a;color:#fff}.btn-print{background:#0f172a;color:#fff;padding:16px;font-size:14px}.btn-wsp{background:#25D366;color:#fff}.btn-pro{background:#2563eb;color:#fff;padding:16px;font-size:14px;box-shadow:0 4px 12px rgba(37,99,235,0.3)}
+.print-area{background:#fff;max-width:880px;margin:12px auto;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.08);border:1px solid #e2e8f0;position:relative}
+.print-area::before{content:"VALORAGRATIS - DEMO";position:absolute;top:45%;left:50%;transform:translate(-50%,-50%) rotate(-35deg);font-size:48px;font-weight:900;color:rgba(15,23,42,0.04);letter-spacing:6px;pointer-events:none;z-index:1}
+.header{background:#0f172a;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.valor-bar{background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:12px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.hero{display:grid;grid-template-columns:1fr 1fr 1fr 0.9fr;gap:10px;padding:14px 20px;position:relative;z-index:2}
+.card-hero{background:#fff;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;text-align:center}
+.card-hero.featured{border:2px solid #2563eb;box-shadow:0 4px 16px rgba(37,99,235,0.12)}
+.card-hero.liq{border:1.5px solid #0ea5e9;background:#f0f9ff}.card-hero.alq{border:1.5px solid #059669;background:#f0fdf4}
+.section{padding:12px 20px;border-top:1px solid #f1f5f9;position:relative;z-index:2}
+.section h3{font-size:11px;font-weight:800;letter-spacing:0.8px;color:#0f172a;margin-bottom:8px;text-transform:uppercase}
+.table{width:100%;border-collapse:collapse;font-size:11px}
+.table th{font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:#64748b;text-align:left;padding:6px 8px;border-bottom:1.5px solid #e2e8f0;font-weight:700}
+.table td{padding:6px 8px;border-bottom:1px solid #f1f5f9}
+.badge{font-size:8px;font-weight:800;padding:2px 6px;border-radius:999px;background:#f1f5f9;color:#475569}
+.badge-blue{background:#dbeafe;color:#1e40af}.badge-green{background:#dcfce7;color:#065f46}.badge-dark{background:#0f172a;color:#fff}.badge-free{background:#fef3c7;color:#92400e}
+.cta-pro{background:linear-gradient(135deg,#2563eb 0%,#0f172a 100%);color:#fff;border-radius:12px;padding:14px 16px;margin-top:12px;position:relative;z-index:2}
+.ficha-line{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;font-size:11px;line-height:1.6}
+.legal{font-size:9px;color:#64748b;line-height:1.6;background:#f8fafc;border-radius:8px;padding:10px;margin-top:8px}
+.footer{background:#0f172a;color:#94a3b8;padding:10px 20px;font-size:9px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;position:relative;z-index:2}
+.wsp-box{font-size:11px;white-space:pre-wrap;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:6px;padding:10px;max-height:220px;overflow:auto;margin-top:6px}
+@media (max-width: 900px){.grid{grid-template-columns:1fr 1fr}.grid .card:last-child{grid-column:1 / -1}.hero{grid-template-columns:1fr 1fr}}
+@media (max-width: 640px){
+.grid{grid-template-columns:1fr !important}.card{padding:12px}.input,select{font-size:16px;min-height:48px}.header{flex-direction:column}.valor-bar{flex-direction:column;align-items:flex-start}.hero{grid-template-columns:1fr 1fr !important;padding:10px 12px}.section{padding:10px 12px}.table{font-size:10px;display:block;overflow-x:auto;white-space:nowrap}.footer{flex-direction:column}.print-area::before{font-size:28px}
+}
+@media print{.no-print{display:none !important}.print-area{box-shadow:none !important;border-radius:0 !important;margin:0 !important;max-width:100% !important;border:0 !important}.hero{grid-template-columns:1fr 1fr 1fr 0.9fr !important}@page{margin:8mm}}
+</style>
+</head><body>
+<div class="no-print">
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:8px"><b style="font-size:11px">ValoraGratis v2 - Gemelo de ValoraPro v44 - Mismo diseño premium - Lead magnet</b><span style="background:#f59e0b;color:#000;padding:3px 10px;border-radius:999px;font-size:9px">GRATIS • DEMO 🆓</span></div>
+<div class="grid">
+<div class="card">
+<b style="font-size:11px">📱 1. VALOR RÁPIDO</b>
+<button id="btnMoneda" class="btn btn-toggle" onclick="toggleMoneda()">💰 S/ SOLES → $ DOLARES</button>
+<select id="dist" class="input"></select>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><div><span class="label">m2 totales</span><input id="m2" type="number" class="input" value="80"></div><div><span class="label">S/ x m2 base</span><input id="pm2" type="number" class="input" value="8500"></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><div><span class="label">TC Editable</span><input id="tc" type="number" step="0.01" class="input" value="3.75"></div><div><span class="label">% Alq anual</span><input id="percAlq" type="number" step="0.1" class="input" value="5"></div></div>
+<span class="label">Estado (fijo, informativo)</span>
+<select id="estadoDoc" class="input"><option value="0" selected>✅ Saneado - Normal 0%</option><option value="-5">💨 Liquidación -5%</option><option value="-10">💨💨 Urgente -10%</option><option value="-20">🟠 Sin sanear -20%</option><option value="-50">🔴 Terreno -50%</option></select>
+<div style="background:#0f172a;color:#fff;border-radius:8px;padding:8px;margin-top:8px;font-size:11px" id="miniResumen">Barranco 80m2 S/ 680k = $ 181k<br>S/ 8,500/m2 = $ 2,267/m2</div>
+<div style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:8px;margin-top:8px;font-size:10px">🆓 <b>ValoraGratis</b> es solo referencial.<br>¿Quieres PDF formal con tu nombre, firma, cliente, valor m2 S/$ y WhatsApp copiable? Usa <b>ValoraPro S/50</b></div>
+</div>
+<div class="card">
+<b style="font-size:11px">🏠 INMUEBLE - Preview</b>
+<div style="border:1px solid #e2e8f0;border-radius:6px;padding:8px;background:#f8fafc;font-size:10px;margin-bottom:8px" id="previewFicha">80m2 BARRANCO • S/ 8,500/m2 = $ 2,267/m2 • Saneado 0% = S/ 680,000 • Alq S/ 2,833/mes</div>
+<b style="font-size:10px">📊 Testigos</b>
+<input id="c1Dir" class="input" value="Av. Grau 789 - Barranco" style="font-size:11px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><input id="c1M2" type="number" class="input" value="78" style="font-size:11px"><input id="c1Precio" type="number" class="input" value="678600" style="font-size:11px"></div>
+<input id="c2Dir" class="input" value="Jr. Union 456 - Barranco" style="font-size:11px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><input id="c2M2" type="number" class="input" value="82" style="font-size:11px"><input id="c2Precio" type="number" class="input" value="688800" style="font-size:11px"></div>
+<div style="background:#eff6ff;border:1.5px solid #2563eb;border-radius:8px;padding:8px;margin-top:8px;font-size:9px"><b>¿Diferencia con ValoraPro S/50?</b><br>• ValoraGratis: sin tu nombre, sin cliente, sin firma<br>• ValoraPro: con tu marca, cliente, firma, editable, hora exacta, WhatsApp</div>
+</div>
+<div class="card">
+<b style="font-size:11px">🖨️ PDF + UPSELL</b>
+<button class="btn btn-print" onclick="window.print()">🖨️ IMPRIMIR / GUARDAR PDF GRATIS (Ctrl+P)</button>
+<div class="cta-pro">
+<b style="font-size:12px">🚀 ¿Quieres cotización formal que sí vale S/50?</b>
+<div style="font-size:10px;margin-top:6px;line-height:1.5">
+✅ Con tu nombre + PN + empresa<br>
+✅ Con nombre cliente + DNI<br>
+✅ Valor m2 S/ y $ + TC<br>
+✅ Tabla 100% editable (concepto, motivo, %)<br>
+✅ Firma cliente/corredor<br>
+✅ Hora exacta + WhatsApp copiable<br>
+✅ Sin marca de agua "DEMO"
+</div>
+<button class="btn btn-pro" onclick="window.open('https://wa.me/51993224286?text=Hola%20Rubens%20quiero%20ValoraPro%20S/50%20formal%20con%20mi%20nombre','_blank')">💬 COMPRAR ValoraPro S/50 → WhatsApp</button>
+<button class="btn btn-wsp" style="background:#0f172a;margin-top:6px" onclick="window.open('https://valora-pro-eight.vercel.app','_blank')">🔗 VER ValoraPro Demo</button>
+</div>
+<span class="label">Resumen para WhatsApp (gratis)</span>
+<div class="wsp-box" id="wspResumen">Cargando...</div>
+<button class="btn btn-wsp" onclick="copiarWsp()">📋 COPIAR</button>
+</div>
+</div>
+</div>
+
+<div class="print-area">
+<div class="header">
+<div><div style="border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:4px 8px;display:inline-block;font-size:12px;letter-spacing:1px"><b>ValoraGratis</b> <span style="opacity:0.6;font-size:9px">Demo • by Runtech • SmartWorld AI</span></div><h1 style="margin-top:8px;font-size:13px;letter-spacing:0.5px">VALORIZACIÓN COMERCIAL - REFERENCIAL</h1><p id="headerSub" style="font-size:10px;opacity:0.7;margin-top:4px">BARRANCO 80M2 S/ 680,000 = $ 181,333 - S/ 8,500/M2 - TC 3.75 - Alq S/ 2,833/mes</p></div>
+<div style="text-align:right;flex-shrink:0"><div style="background:rgba(255,255,255,0.1);border-radius:6px;padding:6px 10px"><b id="headerMoneda" style="font-size:11px">S/ SOLES</b><br><span style="font-size:9px;opacity:0.7" id="fechaHoy">27 Oct 2026</span><br><span style="font-size:8px;background:#f59e0b;color:#000;padding:2px 6px;border-radius:999px;margin-top:4px;display:inline-block">🆓 GRATIS - DEMO</span></div></div>
+</div>
+
+<div class="valor-bar">
+<div><span class="badge badge-dark">VALOR M2 BASE</span> <b id="pValorM2S">S/ 8,500 /m2</b> <span style="color:#94a3b8">=</span> <b id="pValorM2D" style="color:#059669">$ 2,267 /m2</b> <span style="font-size:10px;color:#94a3b8">TC <span id="pValorM2Tc">3.75</span> • <span id="pValorM2Base">80m2 × S/ 8,500 = S/ 680,000</span></span></div>
+<div style="text-align:right;font-size:10px"><span style="color:#64748b">Estado:</span> <b id="pEstadoHeader">Saneado Bueno 0%</b> = <b id="pEstadoValor">S/ 680,000</b></div>
+</div>
+
+<div class="hero">
+<div class="card-hero liq"><span class="badge badge-blue">LIQUIDACIÓN -5%</span><div style="font-size:9px;color:#0369a1;margin-top:4px">VIAJE 30D / DIVORCIO</div><b style="font-size:15px;color:#0ea5e9" id="pLiq">S/ 646,000</b><div style="font-size:10px;color:#64748b" id="pLiqSmall">$ 172,267</div><div style="font-size:8px;color:#94a3b8" id="pLiqM2">S/ 8,075/m2</div></div>
+<div class="card-hero"><span class="badge">MERCADO 0%</span><div style="font-size:9px;color:#64748b;margin-top:4px">VALOR FRÍO - 3 TESTIGOS</div><b style="font-size:16px" id="pMercado">S/ 680,000</b><div style="font-size:10px;color:#64748b" id="pMercadoSmall">$ 181,333</div><div style="font-size:8px;color:#94a3b8" id="pMercadoM2">S/ 8,500/m2</div></div>
+<div class="card-hero featured"><span class="badge badge-blue">RECOMENDADO +2%</span><div style="font-size:9px;color:#1e40af;margin-top:4px">PUBLICAR CON MARGEN</div><b style="font-size:17px;color:#2563eb" id="pRecom">S/ 693,600</b><div style="font-size:11px;color:#1e40af" id="pRecomSmall">$ 184,960</div><div style="font-size:8px;color:#64748b" id="pRecomM2">S/ 8,670/m2</div></div>
+<div class="card-hero alq"><span class="badge badge-green">ALQUILER</span><div style="font-size:9px;color:#065f46;margin-top:4px">MENSUAL EST.</div><b style="font-size:15px;color:#059669" id="pAlq">S/ 2,833</b><div style="font-size:10px;color:#065f46" id="pAlqSmall">$ 755</div><div style="font-size:8px;color:#047857" id="pAlqM2">S/ 35.4/m2 • 5% anual</div></div>
+</div>
+
+<div class="section">
+<h3>🏠 INMUEBLE - VALOR M2 S/ $ - ESTADO - ALQUILER</h3>
+<div class="ficha-line" id="fichaLine">80m2 BARRANCO • S/ 8,500/m2 = $ 2,267/m2 • Saneado 0% = S/ 680,000 = $ 181,333 • Alq S/ 2,833/mes = $ 755/mes</div>
+</div>
+
+<div class="section">
+<h3>💰 TABLA DE VALORES - RANGO COMPLETO (Referencial)</h3>
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+<table class="table" style="min-width:680px">
+<tr><th>CONCEPTO</th><th>MOTIVO</th><th>S/ /M2</th><th>$ /M2</th><th>S/ SOLES</th><th>$ DOLARES</th><th>ALQUILER/MES</th></tr>
+<tr><td><b>Liquidación -5%</b></td><td>Viaje 30d / Divorcio</td><td id="tPm2S1">S/ 8,075</td><td id="tPm2D1">$ 2,153</td><td id="tS1">S/ 646,000</td><td id="tD1">$ 172,267</td><td id="tAlq1">S/ 2,692</td></tr>
+<tr><td><b>Mercado 0%</b></td><td>Valor frío - 3 testigos</td><td id="tPm2S2"><b>S/ 8,500</b></td><td id="tPm2D2">$ 2,267</td><td id="tS2"><b>S/ 680,000</b></td><td id="tD2">$ 181,333</td><td id="tAlq2">S/ 2,833</td></tr>
+<tr style="background:#f8fafc"><td><b>Recomendado +2%</b></td><td>Publicar con margen</td><td id="tPm2S3"><b>S/ 8,670</b></td><td id="tPm2D3">$ 2,312</td><td id="tS3" style="color:#2563eb"><b>S/ 693,600</b></td><td id="tD3">$ 184,960</td><td id="tAlq3">S/ 2,890</td></tr>
+<tr><td><b>Techo +5%</b></td><td>Impecable estreno</td><td id="tPm2S4">S/ 8,925</td><td id="tPm2D4">$ 2,380</td><td id="tS4">S/ 714,000</td><td id="tD4">$ 190,400</td><td id="tAlq4">S/ 2,975</td></tr>
+<tr style="background:#fef2f2"><td><b>Terreno -50%</b></td><td>Solo terreno</td><td id="tPm2S5">S/ 4,250</td><td id="tPm2D5">$ 1,133</td><td id="tS5">S/ 340,000</td><td id="tD5">$ 90,667</td><td id="tAlq5">-</td></tr>
+<tr style="background:#f0fdf4;border-top:2px solid #0f172a"><td><b>💰 Tu precio</b> <span id="pEstadoRow">Saneado</span></td><td id="pMotivoRow">Venta normal</td><td id="tActPm2S"><b>S/ 8,500</b></td><td id="tActPm2D">$ 2,267</td><td id="tActS"><b>S/ 680,000</b></td><td id="tActD">$ 181,333</td><td id="tActAlq"><b>S/ 2,833</b></td></tr>
+</table>
+</div>
+<div style="font-size:8px;color:#94a3b8;margin-top:6px">🆓 ValoraGratis - Referencial - Para cotización formal con tu nombre y firma usa ValoraPro S/50 - 📱 Desliza tabla →</div>
+</div>
+
+<div class="section">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div>
+<h3>📊 COMPARABLES (Urbania / Adondevivir)</h3>
+<table class="table">
+<tr><th>Dirección</th><th>m2</th><th>S//m2</th><th>Precio</th></tr>
+<tr><td id="pC1Dir">Av. Grau 789</td><td id="pC1M2">78</td><td id="pC1Pm2">S/ 8,700</td><td id="pC1P">S/ 678k</td></tr>
+<tr><td id="pC2Dir">Jr. Union 456</td><td id="pC2M2">82</td><td id="pC2Pm2">S/ 8,400</td><td id="pC2P">S/ 688k</td></tr>
+<tr style="background:#fef3c7"><td><b>Promedio</b></td><td></td><td id="pPromPm2"><b>S/ 8,550</b></td><td id="pPromDif">Tu -0.6%</td></tr>
+</table>
+<h3 style="margin-top:12px">📝 METODOLOGÍA + LEGAL</h3>
+<div class="legal">
+Método comparativo mercado - 3 testigos - Ajuste por estado.<br>
+Cotización Referencial - Valorización Comercial. <b>NO es Tasación Pericial RNT</b>. No válido bancario. Vigencia 7 días. Estado: <b id="pLegalEstado">Saneado Bueno</b>.<br>
+<b>Fecha:</b> <span id="pFechaEm">27 Oct 2026</span> - <b>Hasta:</b> <span id="pFechaVig">03 Nov 2026</span> - TC <span id="pTcVig">3.75</span> - <b>ValoraGratis DEMO</b>
+</div>
+<div class="cta-pro" style="margin-top:12px">
+<b>🚀 ¿Quieres esta cotización con tu marca y firma?</b><br>
+<span style="font-size:10px">ValoraPro S/50 incluye: tu nombre, PN, empresa, cliente, tabla 100% editable, firma, hora exacta, WhatsApp copiable, sin marca DEMO</span><br>
+<b style="font-size:11px;margin-top:6px;display:inline-block">📲 WhatsApp 993 224 286 - Yape + Recibo Honorarios 4ta</b>
+</div>
+</div>
+<div>
+<h3>🔓 DESBLOQUEA ValoraPro S/50</h3>
+<div style="border:2px solid #2563eb;border-radius:12px;padding:14px;background:#eff6ff">
+<div style="font-size:12px;font-weight:800">ValoraPro - Cotización Formal incluye:</div>
+<ul style="font-size:10px;margin:8px 0 8px 16px;line-height:1.7">
+<li>✅ Tu nombre + PN + empresa + firma</li>
+<li>✅ Cliente + DNI + celular</li>
+<li>✅ Valor m2 S/ y $ + TC editable</li>
+<li>✅ Tabla editable concepto/motivo/%/S//m2</li>
+<li>✅ Ficha y legal editable con click</li>
+<li>✅ Hora exacta generación</li>
+<li>✅ Resumen WhatsApp copiable</li>
+<li>✅ Sin marca "DEMO" / "GRATIS"</li>
+<li>✅ Soporte + actualizaciones</li>
+</ul>
+<b style="font-size:13px;color:#2563eb">S/50 - Pago Yape - Recibo por Honorarios</b><br>
+<span style="font-size:9px;color:#64748b">Un solo pago - Uso ilimitado - Actualizaciones incluidas</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer"><div><b>ValoraGratis</b> Demo Referencial • Para cotización formal usa <b>ValoraPro S/50</b> - SmartWorld AI - Runtech</div><div style="text-align:right"><span id="pFooterDist">Barranco</span> <span id="pFooterM2">80</span>m2 <span id="pFooterEstado">Saneado</span> - GRATIS<br>WhatsApp 993 224 286 - Upgrade a Pro S/50</div></div>
+</div>
+<script>
+let moneda='soles';
+const precios={"Ancón":2800,"Ate":4200,"Barranco":8500,"Breña":4800,"Carabayllo":3200,"Chaclacayo":3800,"Chorrillos":6200,"Cieneguilla":4500,"Comas":3500,"El Agustino":3800,"Independencia":3800,"Jesús María":6800,"La Molina":7200,"La Victoria":5200,"Lince":6700,"Los Olivos":4000,"Lurigancho":3600,"Lurín":3500,"Magdalena del Mar":6500,"Miraflores":9500,"Pachacámac":3200,"Pucusana":3000,"Pueblo Libre":6200,"Puente Piedra":3000,"Punta Hermosa":5000,"Punta Negra":4800,"Rímac":4000,"San Bartolo":4500,"San Borja":7800,"San Isidro":9200,"San Juan de Lurigancho":3800,"San Juan de Miraflores":4000,"San Luis":5500,"San Martín de Porres":3800,"San Miguel":6000,"Santa Anita":4200,"Santa María del Mar":5200,"Santa Rosa":3000,"Santiago de Surco":7000,"Surquillo":6500,"Villa El Salvador":3200,"Villa María del Triunfo":3400,"Cercado de Lima":4500};
+const sel=document.getElementById('dist');Object.keys(precios).sort().forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k+' - S/ '+precios[k];if(k==='Barranco')o.selected=true;sel.appendChild(o);});
+function toggleMoneda(){moneda=moneda==='soles'?'dolares':'soles';document.getElementById('btnMoneda').textContent=moneda==='soles'?'S/ SOLES → $ DOLARES':'$ DOLARES → S/ SOLES';calc();}
+function fmt(v,s){return s+' '+v.toLocaleString('es-PE',{maximumFractionDigits:0});}
+function getTC(){return parseFloat(document.getElementById('tc').value)||3.75;}
+function calc(){
+const m2=parseFloat(document.getElementById('m2').value)||80;const pm2=parseFloat(document.getElementById('pm2').value)||8500;const tc=getTC();const d=sel.value;const perc=parseFloat(document.getElementById('percAlq').value)||5;const estadoPct=parseFloat(document.getElementById('estadoDoc').value)||0;const estadoText=document.getElementById('estadoDoc').options[document.getElementById('estadoDoc').selectedIndex].text;
+const hallS=m2*pm2;const hallD=hallS/tc;const s1=hallS*0.95;const s2=hallS;const s3=hallS*1.02;const s4=hallS*1.05;const s5=hallS*0.5;const d1=s1/tc;const d2=hallD;const d3=s3/tc;const d4=s4/tc;const d5=s5/tc;const actualS=hallS*(1+estadoPct/100);const actualD=actualS/tc;const alqS=hallS*(perc/100)/12;const alqD=alqS/tc;
+const c1M2=parseFloat(document.getElementById('c1M2').value)||78;const c1P=parseFloat(document.getElementById('c1Precio').value)||678600;const c2M2=parseFloat(document.getElementById('c2M2').value)||82;const c2P=parseFloat(document.getElementById('c2Precio').value)||688800;const pm1=c1M2?c1P/c1M2:0;const pm2c=c2M2?c2P/c2M2:0;const promComp=(pm1+pm2c)/2;
+const ahora=new Date();const fechaCorta=ahora.toLocaleDateString('es-PE',{day:'2-digit',month:'short',year:'numeric'});
+document.getElementById('miniResumen').innerHTML=d+' '+m2+'m2 '+fmt(s2,'S/')+' = '+fmt(d2,'$')+'<br>'+fmt(pm2,'S/')+'/m2 = '+fmt(Math.round(pm2/tc),'$')+'/m2<br>Alq '+fmt(alqS,'S/')+'/mes';
+document.getElementById('previewFicha').textContent=m2+'m2 '+d.toUpperCase()+' • '+fmt(pm2,'S/')+'/m2 = '+fmt(Math.round(pm2/tc),'$')+'/m2 • '+estadoText+' = '+fmt(actualS,'S/')+' • Alq '+fmt(alqS,'S/')+'/mes';
+document.getElementById('fechaHoy').textContent=fechaCorta;document.getElementById('headerSub').textContent=d.toUpperCase()+' '+m2+'M2 '+fmt(s2,'S/')+' = '+fmt(d2,'$')+' - '+fmt(pm2,'S/')+'/M2 = '+fmt(Math.round(pm2/tc),'$')+'/M2 - TC '+tc+' - Alq '+fmt(alqS,'S/')+'/mes';document.getElementById('headerMoneda').textContent=moneda==='soles'?'S/ SOLES':'$ DOLARES';document.getElementById('pValorM2S').textContent=fmt(pm2,'S/')+' /m2';document.getElementById('pValorM2D').textContent=fmt(Math.round(pm2/tc),'$')+' /m2';document.getElementById('pValorM2Tc').textContent=tc;document.getElementById('pValorM2Base').textContent=m2+'m2 × '+fmt(pm2,'S/')+' = '+fmt(s2,'S/')+' = '+fmt(d2,'$');document.getElementById('pEstadoHeader').textContent=estadoText+' '+estadoPct+'%';document.getElementById('pEstadoValor').textContent=fmt(actualS,'S/')+' = '+fmt(actualD,'$');document.getElementById('pLiq').textContent=fmt(s1,'S/');document.getElementById('pLiqSmall').textContent=fmt(d1,'$');document.getElementById('pLiqM2').textContent=fmt(Math.round(pm2*0.95),'S/')+'/m2';document.getElementById('pMercado').textContent=fmt(s2,'S/');document.getElementById('pMercadoSmall').textContent=fmt(d2,'$');document.getElementById('pMercadoM2').textContent=fmt(pm2,'S/')+'/m2';document.getElementById('pRecom').textContent=fmt(s3,'S/');document.getElementById('pRecomSmall').textContent=fmt(d3,'$');document.getElementById('pRecomM2').textContent=fmt(Math.round(pm2*1.02),'S/')+'/m2';document.getElementById('pAlq').textContent=fmt(alqS,'S/');document.getElementById('pAlqSmall').textContent=fmt(alqD,'$');document.getElementById('pAlqM2').textContent=fmt(Math.round(alqS/m2*10)/10,'S/')+'/m2 • '+perc+'% anual';document.getElementById('fichaLine').textContent=m2+'m2 '+d.toUpperCase()+' • '+fmt(pm2,'S/')+'/m2 = '+fmt(Math.round(pm2/tc),'$')+'/m2 • '+estadoText+' '+estadoPct+'% = '+fmt(actualS,'S/')+' = '+fmt(actualD,'$')+' • Alq '+fmt(alqS,'S/')+'/mes = '+fmt(alqD,'$')+'/mes';document.getElementById('tPm2S1').textContent=fmt(Math.round(pm2*0.95),'S/');document.getElementById('tPm2D1').textContent=fmt(Math.round(pm2*0.95/tc),'$');document.getElementById('tS1').textContent=fmt(s1,'S/');document.getElementById('tD1').textContent=fmt(d1,'$');document.getElementById('tAlq1').textContent=fmt(s1*(perc/100)/12,'S/');document.getElementById('tPm2S2').innerHTML='<b>'+fmt(pm2,'S/')+'</b>';document.getElementById('tPm2D2').textContent=fmt(Math.round(pm2/tc),'$');document.getElementById('tS2').innerHTML='<b>'+fmt(s2,'S/')+'</b>';document.getElementById('tD2').textContent=fmt(d2,'$');document.getElementById('tAlq2').textContent=fmt(s2*(perc/100)/12,'S/');document.getElementById('tPm2S3').innerHTML='<b>'+fmt(Math.round(pm2*1.02),'S/')+'</b>';document.getElementById('tPm2D3').textContent=fmt(Math.round(pm2*1.02/tc),'$');document.getElementById('tS3').innerHTML='<b>'+fmt(s3,'S/')+'</b>';document.getElementById('tD3').textContent=fmt(d3,'$');document.getElementById('tAlq3').textContent=fmt(s3*(perc/100)/12,'S/');document.getElementById('tPm2S4').textContent=fmt(Math.round(pm2*1.05),'S/');document.getElementById('tPm2D4').textContent=fmt(Math.round(pm2*1.05/tc),'$');document.getElementById('tS4').textContent=fmt(s4,'S/');document.getElementById('tD4').textContent=fmt(d4,'$');document.getElementById('tAlq4').textContent=fmt(s4*(perc/100)/12,'S/');document.getElementById('tPm2S5').textContent=fmt(Math.round(pm2*0.5),'S/');document.getElementById('tPm2D5').textContent=fmt(Math.round(pm2*0.5/tc),'$');document.getElementById('tS5').textContent=fmt(s5,'S/');document.getElementById('tD5').textContent=fmt(d5,'$');document.getElementById('tActPm2S').innerHTML='<b>'+fmt(Math.round(pm2*(1+estadoPct/100)),'S/')+'</b>';document.getElementById('tActPm2D').textContent=fmt(Math.round(pm2*(1+estadoPct/100)/tc),'$');document.getElementById('tActS').innerHTML='<b>'+fmt(actualS,'S/')+'</b>';document.getElementById('tActD').textContent=fmt(actualD,'$');document.getElementById('tActAlq').innerHTML='<b>'+fmt(actualS*(perc/100)/12,'S/')+'</b>';document.getElementById('pC1Dir').textContent=document.getElementById('c1Dir').value;document.getElementById('pC1M2').textContent=c1M2;document.getElementById('pC1Pm2').textContent=fmt(Math.round(pm1),'S/');document.getElementById('pC1P').textContent=fmt(c1P,'S/');document.getElementById('pC2Dir').textContent=document.getElementById('c2Dir').value;document.getElementById('pC2M2').textContent=c2M2;document.getElementById('pC2Pm2').textContent=fmt(Math.round(pm2c),'S/');document.getElementById('pC2P').textContent=fmt(c2P,'S/');document.getElementById('pPromPm2').innerHTML='<b>'+fmt(Math.round(promComp),'S/')+'</b>';document.getElementById('pPromDif').textContent='Tu '+((pm2-promComp)/promComp*100).toFixed(1)+'%';document.getElementById('pLegalEstado').textContent=estadoText;const hoy=new Date();const vig=new Date();vig.setDate(hoy.getDate()+7);document.getElementById('pFechaEm').textContent=fechaCorta;document.getElementById('pFechaVig').textContent=vig.toLocaleDateString('es-PE');document.getElementById('pTcVig').textContent=tc;document.getElementById('pFooterDist').textContent=d;document.getElementById('pFooterM2').textContent=m2;document.getElementById('pFooterEstado').textContent=estadoText;document.getElementById('pEstadoRow').textContent=estadoText;generarWsp(d,m2,s2,d2,s3,d3,alqS,alqD,perc,actualS,actualD,estadoText,tc);}
+function generarWsp(d,m2,s2,d2,s3,d3,alqS,alqD,perc,actualS,actualD,estadoText,tc){const txt=`🏠 VALOR ${d.toUpperCase()} ${m2}m2 - ${estadoText} - ValoraGratis 🆓\n💲 S/ ${Math.round(document.getElementById('pm2').value)}/m2 = $ ${Math.round(document.getElementById('pm2').value/tc)}/m2\n💰 Mercado S/ ${Math.round(s2).toLocaleString()} = $ ${Math.round(d2).toLocaleString()}\n💵 Alquiler S/ ${Math.round(alqS).toLocaleString()}/mes - ${perc}% anual\n📊 Gratis referencial - Para PDF formal con tu marca → ValoraPro S/50 - WhatsApp 993 224 286`;document.getElementById('wspResumen').textContent=txt;}
+function copiarWsp(){const t=document.getElementById('wspResumen').textContent;navigator.clipboard?navigator.clipboard.writeText(t).then(()=>alert('✅ Copiado')):alert(t);}
+sel.addEventListener('change',()=>{document.getElementById('pm2').value=precios[sel.value];calc();});
+['m2','pm2','tc','c1Dir','c1M2','c1Precio','c2Dir','c2M2','c2Precio','estadoDoc','percAlq'].forEach(id=>{let el=document.getElementById(id);if(el){el.addEventListener('input',calc);el.addEventListener('change',calc);}});
+calc();
+</script>
+</body></html>
